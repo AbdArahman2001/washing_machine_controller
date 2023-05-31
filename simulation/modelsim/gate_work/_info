@@ -1,0 +1,35 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dE:/from HD/University/2022-2023-2/VHDL/lab/projects/washing_machine/simulation/modelsim
+vwashing_machine_main_cont
+!s110 1685520248
+!i10b 1
+!s100 Lk[4a;zDJPYeS<Z8jJ_f`2
+!s11b Dg1SIo80bB@j0V0VzS_@n1
+I3Q[3F9aZY[[YkD?f^aD>G1
+VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1685520136
+8washing_machine.vo
+Fwashing_machine.vo
+!i122 0
+L0 32 15760
+OV;L;2020.1;71
+r1
+!s85 0
+31
+!s108 1685520247.000000
+!s107 washing_machine.vo|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|washing_machine.vo|
+!i113 1
+o-vlog01compat -work work
+!s92 -vlog01compat -work work +incdir+.
+tCvgOpt 0

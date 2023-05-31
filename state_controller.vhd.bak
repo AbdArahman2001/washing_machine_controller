@@ -1,0 +1,121 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity state_controller is
+	port( 
+		clk, reset : in std_logic:= '0' ;
+		start: in std_logic := '1'; 
+		user_program: in std_logic_vector (4 downto 0);
+		state: out  std_logic_vector (1 downto 0)   
+	);
+end state_controller;
+
+architecture controller of state_controller is
+--subtype state is std_logic_vector(1 downto 0);
+--constant washing: state := "00";
+--constant spin: state := "01";
+--constant rinse: state := "10";
+--constant idle: state := "11";
+--signal present_state, next_state : state := idle ;
+
+begin
+process (clk) 
+variable counter : integer  ; 
+variable loaded : std_logic := '0' ; 
+begin
+if rising_edge(clk) then 
+	if(reset = '1' ) then 
+		state <= "11" ; 
+	end if ; 
+  if (start = '1' ) then 
+	if (user_program = "00001") then 
+		if(loaded = '0' ) then 
+			counter := 10 ; 
+			loaded := '1' ;
+		else 
+			counter := counter - 1 ; 
+		end if ; 	
+		if (counter > 7 ) then -- 7 to 11 
+			state <= "00" ; 
+		elsif (counter > 2 ) then 
+			state <= "01" ; 
+		elsif (counter <= 2 and counter > 0 ) then 
+			state <= "10" ; 
+		else 
+			state <= "11" ;
+		end if ; 
+	elsif (user_program = "00010") then  -- Rapid 
+		
+		if(loaded = '0' ) then 
+			counter := 6 ; 
+			loaded := '1' ;
+		else 
+			counter := counter - 1 ; 
+		end if ; 	
+		if (counter > 4 ) then -- 7 to 11 
+			state <= "00" ; 
+		elsif (counter > 2 ) then 
+			state <= "01" ; 
+		elsif (counter <= 2 and counter > 0 ) then 
+			state <= "10" ; 
+		else 
+			state <= "11" ;
+		end if ;
+		elsif (user_program = "00100") then  -- Rapid 
+		
+		if(loaded = '0' ) then 
+			counter := 12 ; 
+			loaded := '1' ;
+		else 
+			counter := counter - 1 ; 
+		end if ; 	
+		if (counter > 7 ) then -- 7 to 11 
+			state <= "00" ; 
+		elsif (counter > 2 ) then 
+			state <= "01" ; 
+		elsif (counter <= 2 and counter > 0 ) then 
+			state <= "10" ; 
+		else 
+			state <= "11" ;
+		end if ;
+		elsif (user_program = "01000") then  -- Rapid 
+		
+		if(loaded = '0' ) then 
+			counter := 4 ; 
+			loaded := '1' ;
+		else 
+			counter := counter - 1 ; 
+		end if ; 	
+
+		if (counter > 2 ) then 
+			state <= "01" ; 
+		elsif (counter <= 2 and counter > 0 ) then 
+			state <= "10" ; 
+		else 
+			state <= "11" ;
+		end if ;
+		elsif (user_program = "10000") then  -- Rapid 
+		
+		if(loaded = '0' ) then 
+			counter := 8 ; 
+			loaded := '1' ;
+		else 
+			counter := counter - 1 ; 
+		end if ; 	
+		if (counter > 5 ) then -- 7 to 11 
+			state <= "00" ; 
+		elsif (counter > 2 ) then 
+			state <= "01" ; 
+		elsif (counter <= 2 and counter > 0 ) then 
+			state <= "10" ; 
+		else 
+			state <= "11" ;
+		end if ;
+	end if ;
+	end if ; 
+end if ; 
+ 
+end process ; 
+
+end ; 
